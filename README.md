@@ -2,7 +2,7 @@
 数据库知识点记录
 
 #1.常见的数据库有哪些
-MySQL 轻量级，源码开放, \n
+MySQL 轻量级，源码开放,  
 SqlServer 微软公司, 
 Oracle 甲骨文公司
 DB2 IBM
@@ -51,3 +51,10 @@ delete from person where creidtID = "12233219800512238X"
 grant, revoke，用于操作数据库
 eg.
 grant select/insert/update/delete/create/alter/drop/index/create view/references on person to users@micheal
+
+
+
+
+
+
+Markdown: http://www.appinn.com/markdown/#p
