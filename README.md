@@ -50,10 +50,54 @@ delete from person where creidtID = "12233219800512238X"
 ##DCL
 grant, revoke，用于操作数据库  
 eg.  
-grant select/insert/update/delete/create/alter/drop/index/create view/references on person to users@micheal  
+grant select/insert/update/delete/create/alter/drop/index/create view/references on person to users@micheal    
+revoke update on person from users@micheal  
   
-  
+###连接
+###聚合
+###关键字查询
+##view 视图
+create view my_view as name, age on person  
+alter view my_view ...  
+##procedure 存储过程
+create procedure getNum   
+(in limit_age int,  
+out num int)     
+select count(*) num from person where age < limit_age;    
+使用  
+call getNum(25, @num);  
+查询  
+select * from mysql.proc where db = 'test' and `type` = 'PROCEDURE';  
+##index 索引
+##trigger 触发器（特殊的存储过程）  
+delimiter ||   
+drop trigger if exists my_trigger||  
+create trigger my_trigger  
+after insert on person  
+for each row  
+begin  
+if new.age > 30 then  
+delete from person where creidtId = new.creidtId;  
+end if;  
+end||  
+delimiter;||  
+使用  
+insert into person value("1234567", "lili", 34, 188);||  
+会报错如下  
+Can't update table 'person' in stored function/trigger because it is already used by statement which invoked this stored function/trigger.  
+原因是age不符合规则  
+##
 
+#设计范式
+##第一范式 1NF
+原子性，字段不能再分
+##第二范式 2NF
+惟一性，一列说明一个事物，数据列中无重复数据
+##第三范式 3NF
+不存在传递依赖，每列直接依赖主键
+##       BCNF
+##第四范式 4NF
+##第五范式 5NF
 
 
 
